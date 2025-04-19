@@ -1,45 +1,81 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { Redirect, Stack, Tabs, useRouter } from 'expo-router';
+import getString from '@/utils/getString';
+import { Suspense, useEffect, useState } from 'react';
+import {
+    IconEdit,
+    IconEditCircle,
+    IconHome,
+    IconRefresh,
+    IconSettings
+} from '@tabler/icons-react-native';
+import colors from '@/styles/colors';
+import { HeaderButton } from '@react-navigation/elements';
+import queryClient from '@/utils/queryClient';
+import styles from '@/styles/styles';
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+const Main = () => {
+    const router = useRouter();
+    const token = getString('token');
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+    if (!token) {
+        return <Redirect href="/login" />;
+    } else {
+        return (
+            <Tabs
+                screenOptions={{
+                    tabBarActiveTintColor: colors.ac1,
+                    headerStyle: styles.base.header,
+                    headerTitleStyle: styles.base.headerTitle,
+                    sceneStyle: styles.base.scene,
+                    tabBarStyle: styles.base.tabBar
+                }}
+            >
+                <Tabs.Screen
+                    name="index"
+                    options={{
+                        title: 'Home',
+                        tabBarIcon: ({ color, size }) => (
+                            <IconHome color={color} size={size}></IconHome>
+                        ),
+                        headerLeft: () => (
+                            <HeaderButton
+                                onPress={() => {
+                                    queryClient.resetQueries();
+                                }}
+                                children={<IconRefresh color={colors.ac1} />}
+                            />
+                        ),
+                        headerRight: () => (
+                            <HeaderButton
+                                onPress={() => router.navigate('/compose')}
+                                children={<IconEdit color={colors.ac1} />}
+                            />
+                        )
+                    }}
+                />
+                <Tabs.Screen
+                    name="settings"
+                    options={{
+                        title: 'Settings',
+                        tabBarIcon: ({ color, size }) => (
+                            <IconSettings
+                                color={color}
+                                size={size}
+                            ></IconSettings>
+                        )
+                    }}
+                />
+            </Tabs>
+        );
+    }
+};
 
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
-  );
-}
+const TabbedLayout = () => {
+    return (
+        <Suspense>
+            <Main />
+        </Suspense>
+    );
+};
+
+export default TabbedLayout;
