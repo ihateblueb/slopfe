@@ -2,6 +2,7 @@ import {
     Button,
     Image,
     Linking,
+    Pressable,
     Text,
     TouchableOpacity,
     View
@@ -24,17 +25,16 @@ const MisskeyMarkdown = ({
             return <Text>{object.props.text}</Text>;
         } else if (object.type === 'link') {
             return (
-                <TouchableOpacity
+                <Text
                     onPress={() => Linking.openURL(object.props.url)}
+                    style={styles.mfm.url}
                 >
-                    <Text style={styles.mfm.url}>
-                        <>
-                            {object.children
-                                ? renderChildren(object.children)
-                                : undefined}
-                        </>
-                    </Text>
-                </TouchableOpacity>
+                    <>
+                        {object.children
+                            ? renderChildren(object.children)
+                            : undefined}
+                    </>
+                </Text>
             );
         } else if (object.type === 'bold') {
             return (
@@ -99,11 +99,9 @@ const MisskeyMarkdown = ({
             );
         } else if (object.type === 'url') {
             return (
-                <TouchableOpacity
-                    onPress={() => Linking.openURL(object.props.url)}
-                >
+                <Text onPress={() => Linking.openURL(object.props.url)}>
                     <Text style={styles.mfm.url}>{object.props.url}</Text>
-                </TouchableOpacity>
+                </Text>
             );
         } else if (object.type === 'quote') {
             // todo
