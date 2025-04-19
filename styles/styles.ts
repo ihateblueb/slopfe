@@ -15,7 +15,9 @@ const base = StyleSheet.create({
         backgroundColor: colors.bg2
     },
     header: {
-        backgroundColor: colors.bg2
+        backgroundColor: colors.bg2,
+        borderBottomColor: colors.bg3,
+        borderBottomWidth: 0.5
     },
     headerTitle: {
         color: colors.tx1
@@ -28,7 +30,7 @@ const base = StyleSheet.create({
         color: colors.tx2,
         backgroundColor: colors.bg2,
         borderTopColor: colors.bg3,
-        borderTopWidth: 1
+        borderTopWidth: 0.5
     }
 });
 
@@ -101,7 +103,7 @@ const status = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         overflow: 'hidden',
-        padding: 6,
+        padding: 8,
         gap: 5,
         backgroundColor: colors.bg2,
         borderRadius: 6

@@ -132,6 +132,33 @@ const MisskeyMarkdown = ({
                     {object.props.acct}
                 </Link>
             );
+        } else if (object.type === 'hashtag') {
+            return (
+                <Link
+                    style={styles.mfm.mention}
+                    href={'/tag/' + object.props.hashtag}
+                >
+                    #{object.props.hashtag}
+                </Link>
+            );
+        } else if (object.type === 'inlineCode') {
+            // todo
+            return (
+                <>
+                    {object.children
+                        ? renderChildren(object.children)
+                        : undefined}
+                </>
+            );
+        } else if (object.type === 'blockCode') {
+            // todo
+            return (
+                <>
+                    {object.children
+                        ? renderChildren(object.children)
+                        : undefined}
+                </>
+            );
         } else {
             return (
                 <>

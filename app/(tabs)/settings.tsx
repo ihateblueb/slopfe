@@ -12,7 +12,8 @@ const Settings = () => {
         'ew $[x128 sdfsd inside unknown function] hello **h** hi *hey look at this' +
         ' long line of text surely this will overflow wont it* and look more normal stuff' +
         ' https://google.com/ <small>this is small text jere</small> normal <center>center doesnt work though</center>' +
-        ' :emojiTest: ❤️ @mention@remlit.site';
+        ' :emojiTest: ❤️ @mention@remlit.site ' +
+        ' asdfgsdgfsd #eee';
 
     return (
         <View

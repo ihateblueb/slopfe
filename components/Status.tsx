@@ -23,6 +23,7 @@ import post_v1_statuses_unfavourite from '@/api/post_v1_statuses_unfavourite';
 import post_v1_statuses_bookmark from '@/api/post_v1_statuses_bookmark';
 import post_v1_statuses_unbookmark from '@/api/post_v1_statuses_unbookmark';
 import Emoji from '@/components/Emoji';
+import { Link } from 'expo-router';
 
 const Status = ({ status }) => {
     const [iBoosted, setIBoosted] = useState(status?.reblogged ?? false);
@@ -62,21 +63,23 @@ const Status = ({ status }) => {
         <View style={styles.status.base}>
             <View style={styles.status.header}>
                 <Avatar account={status?.account} />
-                <View>
-                    <Text style={styles.status.headerDisplayname}>
-                        <MisskeyMarkdown
-                            content={
-                                status?.account?.display_name ??
-                                status?.account?.username
-                            }
-                            emojis={status?.account?.emojis}
-                            simple={true}
-                        />
-                    </Text>
-                    <Text style={styles.status.headerUsername}>
-                        @{status?.account?.fqn}
-                    </Text>
-                </View>
+                <Link href={'/user/@' + status?.account?.fqn}>
+                    <View>
+                        <Text style={styles.status.headerDisplayname}>
+                            <MisskeyMarkdown
+                                content={
+                                    status?.account?.display_name ??
+                                    status?.account?.username
+                                }
+                                emojis={status?.account?.emojis}
+                                simple={true}
+                            />
+                        </Text>
+                        <Text style={styles.status.headerUsername}>
+                            @{status?.account?.fqn}
+                        </Text>
+                    </View>
+                </Link>
                 <View style={styles.status.headerInfo}>
                     {status?.visibility === 'public' ? (
                         <IconWorld size={16} color={colors.tx2} />
