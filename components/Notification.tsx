@@ -10,6 +10,8 @@ import {
     IconAt,
     IconChartBar,
     IconDental,
+    IconMoodSmile,
+    IconNote,
     IconPencil,
     IconPlus,
     IconQuestionMark,
@@ -48,17 +50,19 @@ const Notification = ({ notification }) => {
             case 'favourite':
                 return <IconStar size={18} color={colors.like} />;
             case 'reaction':
-                return <IconPlus size={18} color={colors.ac1} />;
+                return <IconMoodSmile size={18} color={colors.ac1} />;
             case 'reblog':
                 return <IconRepeat size={18} color={colors.boost} />;
             case 'follow':
                 return <IconUserPlus size={18} color={colors.ac1} />;
-            case 'followRequestReceived':
+            case 'follow_request':
                 return <IconUserQuestion size={18} color={colors.ac1} />;
             case 'mention':
                 return <IconAt size={18} color={colors.ac1} />;
             case 'update':
                 return <IconPencil size={18} color={colors.ac1} />;
+            case 'status':
+                return <IconNote size={18} color={colors.ac1} />;
             case 'poll':
                 return <IconChartBar size={18} color={colors.ac1} />;
             case 'bite':
@@ -103,7 +107,7 @@ const Notification = ({ notification }) => {
                         {renderUserLink()} followed you
                     </Text>
                 );
-            case 'followRequestReceived':
+            case 'follow_request':
                 return (
                     <Text style={styles.base.text}>
                         {renderUserLink()} requested to follow you
@@ -121,8 +125,14 @@ const Notification = ({ notification }) => {
                         {renderUserLink()} edited a post
                     </Text>
                 );
+            case 'status':
+                return (
+                    <Text style={styles.base.text}>
+                        {renderUserLink()} made a post
+                    </Text>
+                );
             case 'poll':
-                return 'A poll has ended';
+                return <Text style={styles.base.text}>A poll has ended</Text>;
             case 'bite':
                 return notification?.status ? (
                     <Text style={styles.base.text}>

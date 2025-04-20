@@ -17,7 +17,8 @@ export default function Index() {
         fetchNextPage,
         fetchPreviousPage,
         hasNextPage,
-        hasPreviousPage
+        hasPreviousPage,
+        refetch
     } = useInfiniteQuery({
         queryKey: ['timeline'],
         queryFn: async ({ pageParam }) => get_v1_timelines('home', pageParam),
@@ -32,7 +33,10 @@ export default function Index() {
             refreshControl={
                 <RefreshControl
                     refreshing={isFetching}
-                    onRefresh={() => queryClient.refetchQueries()}
+                    onRefresh={() => {
+                        if (data) data.pages = [data?.pages[0]];
+                        refetch();
+                    }}
                 />
             }
         >

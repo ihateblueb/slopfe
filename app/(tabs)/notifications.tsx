@@ -19,7 +19,8 @@ const Notifications = () => {
         fetchNextPage,
         fetchPreviousPage,
         hasNextPage,
-        hasPreviousPage
+        hasPreviousPage,
+        refetch
     } = useInfiniteQuery({
         queryKey: ['notifications'],
         queryFn: async ({ pageParam }) => get_v1_notifications(pageParam),
@@ -34,7 +35,10 @@ const Notifications = () => {
             refreshControl={
                 <RefreshControl
                     refreshing={isFetching}
-                    onRefresh={() => queryClient.refetchQueries()}
+                    onRefresh={() => {
+                        if (data) data.pages = [data?.pages[0]];
+                        refetch();
+                    }}
                 />
             }
         >
