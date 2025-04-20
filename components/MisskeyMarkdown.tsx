@@ -12,20 +12,25 @@ import * as mfm from 'mfm-js';
 import { MfmNode } from 'mfm-js';
 import { Link } from 'expo-router';
 import Emoji from '@/components/Emoji';
+import { Fragment } from 'react';
 
 const MisskeyMarkdown = ({
+    keyPrefix = 'prefix-',
     content = '',
     simple = false,
     emojis = undefined
 }) => {
     let mfmTree = simple ? mfm.parseSimple(content) : mfm.parse(content);
 
-    function renderChild(object: MfmNode) {
+    function renderChild(object: MfmNode, count: number) {
+        const nodeKey = `${keyPrefix}-mfm-node-${count}-${object.type}`;
+
         if (object.type === 'text') {
-            return <Text>{object.props.text}</Text>;
+            return <Text key={nodeKey}>{object.props.text}</Text>;
         } else if (object.type === 'link') {
             return (
                 <Text
+                    key={nodeKey}
                     onPress={() => Linking.openURL(object.props.url)}
                     style={styles.mfm.url}
                 >
@@ -38,7 +43,7 @@ const MisskeyMarkdown = ({
             );
         } else if (object.type === 'bold') {
             return (
-                <Text style={styles.mfm.bold}>
+                <Text key={nodeKey} style={styles.mfm.bold}>
                     <>
                         {object.children
                             ? renderChildren(object.children)
@@ -48,7 +53,7 @@ const MisskeyMarkdown = ({
             );
         } else if (object.type === 'strike') {
             return (
-                <Text style={styles.mfm.strike}>
+                <Text key={nodeKey} style={styles.mfm.strike}>
                     <>
                         {object.children
                             ? renderChildren(object.children)
@@ -58,7 +63,7 @@ const MisskeyMarkdown = ({
             );
         } else if (object.type === 'italic') {
             return (
-                <Text style={styles.mfm.italic}>
+                <Text key={nodeKey} style={styles.mfm.italic}>
                     <>
                         {object.children
                             ? renderChildren(object.children)
@@ -69,7 +74,7 @@ const MisskeyMarkdown = ({
         } else if (object.type === 'plain') {
             // todo: ??
             return (
-                <Text>
+                <Text key={nodeKey}>
                     <>
                         {object.children
                             ? renderChildren(object.children)
@@ -79,7 +84,7 @@ const MisskeyMarkdown = ({
             );
         } else if (object.type === 'small') {
             return (
-                <Text style={styles.mfm.small}>
+                <Text key={nodeKey} style={styles.mfm.small}>
                     <>
                         {object.children
                             ? renderChildren(object.children)
@@ -89,7 +94,7 @@ const MisskeyMarkdown = ({
             );
         } else if (object.type === 'center') {
             return (
-                <Text style={styles.mfm.center}>
+                <Text key={nodeKey} style={styles.mfm.center}>
                     <>
                         {object.children
                             ? renderChildren(object.children)
@@ -99,18 +104,21 @@ const MisskeyMarkdown = ({
             );
         } else if (object.type === 'url') {
             return (
-                <Text onPress={() => Linking.openURL(object.props.url)}>
+                <Text
+                    key={nodeKey}
+                    onPress={() => Linking.openURL(object.props.url)}
+                >
                     <Text style={styles.mfm.url}>{object.props.url}</Text>
                 </Text>
             );
         } else if (object.type === 'quote') {
             // todo
             return (
-                <>
+                <Fragment key={nodeKey}>
                     {object.children
                         ? renderChildren(object.children)
                         : undefined}
-                </>
+                </Fragment>
             );
         } else if (object.type === 'emojiCode') {
             let foundEmoji = emojis
@@ -118,21 +126,29 @@ const MisskeyMarkdown = ({
                 : undefined;
 
             return foundEmoji ? (
-                <Emoji src={foundEmoji?.url ?? foundEmoji?.static_url} />
+                <Emoji
+                    key={nodeKey}
+                    src={foundEmoji?.url ?? foundEmoji?.static_url}
+                />
             ) : (
-                <Text>:{object.props.name}:</Text>
+                <Text key={nodeKey}>:{object.props.name}:</Text>
             );
         } else if (object.type === 'unicodeEmoji') {
-            return <Text>{object.props.emoji}</Text>;
+            return <Text key={nodeKey}>{object.props.emoji}</Text>;
         } else if (object.type === 'mention') {
             return (
-                <Link style={styles.mfm.mention} href={'/' + object.props.acct}>
+                <Link
+                    key={nodeKey}
+                    style={styles.mfm.mention}
+                    href={'/' + object.props.acct}
+                >
                     {object.props.acct}
                 </Link>
             );
         } else if (object.type === 'hashtag') {
             return (
                 <Link
+                    key={nodeKey}
                     style={styles.mfm.mention}
                     href={'/tag/' + object.props.hashtag}
                 >
@@ -142,37 +158,39 @@ const MisskeyMarkdown = ({
         } else if (object.type === 'inlineCode') {
             // todo
             return (
-                <>
+                <Fragment key={nodeKey}>
                     {object.children
                         ? renderChildren(object.children)
                         : undefined}
-                </>
+                </Fragment>
             );
         } else if (object.type === 'blockCode') {
             // todo
             return (
-                <>
+                <Fragment key={nodeKey}>
                     {object.children
                         ? renderChildren(object.children)
                         : undefined}
-                </>
+                </Fragment>
             );
         } else {
             return (
-                <>
+                <Fragment key={nodeKey}>
                     {object.children
                         ? renderChildren(object.children)
                         : undefined}
-                </>
+                </Fragment>
             );
         }
     }
 
     function renderChildren(children) {
         let rendered = [];
+        let count = 1;
 
         for (const child of children) {
-            rendered.push(renderChild(child));
+            rendered.push(renderChild(child, count));
+            count++;
         }
 
         return rendered;

@@ -72,6 +72,7 @@ const Status = ({ status }) => {
                     <View>
                         <Text style={styles.status.headerDisplayname}>
                             <MisskeyMarkdown
+                                keyPrefix={`status-${status.id}-author-name`}
                                 content={
                                     status?.account?.display_name ??
                                     status?.account?.username
@@ -115,6 +116,7 @@ const Status = ({ status }) => {
             <Text style={styles.status.text}>
                 {cwOpen ? (
                     <MisskeyMarkdown
+                        keyPrefix={`status-${status.id}-content`}
                         content={status?.text ?? status?.content}
                         emojis={status?.emojis}
                     />

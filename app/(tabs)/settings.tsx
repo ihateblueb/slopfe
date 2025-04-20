@@ -35,7 +35,10 @@ const Settings = () => {
                 />
 
                 <Text style={styles.status.text}>
-                    <MisskeyMarkdown content={mfmTest} />
+                    <MisskeyMarkdown
+                        keyPrefix={'settings-test'}
+                        content={mfmTest}
+                    />
                 </Text>
             </ScrollView>
         </View>

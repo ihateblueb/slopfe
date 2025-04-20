@@ -41,7 +41,7 @@ export default function Index() {
             ) : (
                 <View key={'view'}>
                     {data.pages.map((page) => (
-                        <React.Fragment key={page.id}>
+                        <React.Fragment key={page.id ?? 'page-0'}>
                             {page.map((status) => (
                                 <Status status={status} key={status.id} />
                             ))}
