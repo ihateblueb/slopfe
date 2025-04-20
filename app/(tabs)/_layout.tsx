@@ -2,6 +2,7 @@ import { Redirect, Stack, Tabs, useRouter } from 'expo-router';
 import getString from '@/utils/getString';
 import { Suspense, useEffect, useState } from 'react';
 import {
+    IconBell,
     IconEdit,
     IconEditCircle,
     IconHome,
@@ -37,19 +38,20 @@ const Main = () => {
                         tabBarIcon: ({ color, size }) => (
                             <IconHome color={color} size={size}></IconHome>
                         ),
-                        headerLeft: () => (
-                            <HeaderButton
-                                onPress={() => {
-                                    queryClient.resetQueries();
-                                }}
-                                children={<IconRefresh color={colors.ac1} />}
-                            />
-                        ),
                         headerRight: () => (
                             <HeaderButton
                                 onPress={() => router.navigate('/compose')}
                                 children={<IconEdit color={colors.ac1} />}
                             />
+                        )
+                    }}
+                />
+                <Tabs.Screen
+                    name="notifications"
+                    options={{
+                        title: 'Notifications',
+                        tabBarIcon: ({ color, size }) => (
+                            <IconBell color={color} size={size}></IconBell>
                         )
                     }}
                 />

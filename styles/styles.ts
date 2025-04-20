@@ -17,6 +17,17 @@ const base = StyleSheet.create({
     textArea: {
         height: '50%'
     },
+    button: {
+        display: 'flex',
+        flexDirection: 'row',
+        color: colors.ac1,
+        borderRadius: 6,
+        padding: 8,
+        gap: 4
+    },
+    buttonText: {
+        color: colors.ac1
+    },
     header: {
         backgroundColor: colors.bg2,
         borderBottomColor: colors.bg3,
@@ -102,6 +113,7 @@ const status = StyleSheet.create({
     reactions: {
         display: 'flex',
         flexDirection: 'row',
+        flexWrap: 'wrap',
         alignItems: 'flex-start',
         gap: 8,
         paddingTop: 8
