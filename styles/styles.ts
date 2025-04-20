@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import colors from '@/styles/colors';
+import colorOpacity from '@/utils/colorOpacity';
 
 const base = StyleSheet.create({
     text: {
@@ -20,13 +21,15 @@ const base = StyleSheet.create({
     button: {
         display: 'flex',
         flexDirection: 'row',
+        alignItems: 'center',
         color: colors.ac1,
         borderRadius: 6,
         padding: 8,
         gap: 4
     },
     buttonText: {
-        color: colors.ac1
+        color: colors.ac1,
+        fontSize: 15
     },
     header: {
         backgroundColor: colors.bg2,
@@ -50,6 +53,13 @@ const base = StyleSheet.create({
         backgroundColor: colors.bg2,
         borderTopColor: colors.bg3,
         borderTopWidth: 0.5
+    },
+    tabBarIcon: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '100%'
     }
 });
 
@@ -128,8 +138,8 @@ const status = StyleSheet.create({
         backgroundColor: colors.bg2,
         borderRadius: 6
     },
-    iReacted: {
-        backgroundColor: colors.ac1
+    reacted: {
+        backgroundColor: colorOpacity(colors.ac1, 50)
     },
     footer: {
         display: 'flex',

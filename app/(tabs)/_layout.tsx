@@ -1,4 +1,4 @@
-import { Redirect, Stack, Tabs, useRouter } from 'expo-router';
+import { Redirect, Stack, Tabs, usePathname, useRouter } from 'expo-router';
 import getString from '@/utils/getString';
 import { Suspense, useEffect, useState } from 'react';
 import {
@@ -13,9 +13,11 @@ import colors from '@/styles/colors';
 import { HeaderButton } from '@react-navigation/elements';
 import queryClient from '@/utils/queryClient';
 import styles from '@/styles/styles';
+import { Pressable } from 'react-native';
 
 const Main = () => {
     const router = useRouter();
+    const pathname = usePathname();
     const token = getString('token');
 
     if (!token) {
@@ -35,8 +37,23 @@ const Main = () => {
                     name="index"
                     options={{
                         title: 'Home',
-                        tabBarIcon: ({ color, size }) => (
-                            <IconHome color={color} size={size}></IconHome>
+                        tabBarButton: () => (
+                            <Pressable
+                                onPress={() => {
+                                    router.navigate('/');
+                                }}
+                                onLongPress={() => queryClient.refetchQueries()}
+                                style={styles.base.tabBarIcon}
+                            >
+                                <IconHome
+                                    color={
+                                        pathname === '/'
+                                            ? colors.ac1
+                                            : colors.tx3
+                                    }
+                                    size={26}
+                                ></IconHome>
+                            </Pressable>
                         ),
                         headerRight: () => (
                             <HeaderButton
@@ -50,6 +67,24 @@ const Main = () => {
                     name="notifications"
                     options={{
                         title: 'Notifications',
+                        tabBarButton: () => (
+                            <Pressable
+                                onPress={() => {
+                                    router.navigate('/notifications');
+                                }}
+                                onLongPress={() => queryClient.refetchQueries()}
+                                style={styles.base.tabBarIcon}
+                            >
+                                <IconBell
+                                    color={
+                                        pathname === '/notifications'
+                                            ? colors.ac1
+                                            : colors.tx3
+                                    }
+                                    size={26}
+                                ></IconBell>
+                            </Pressable>
+                        ),
                         tabBarIcon: ({ color, size }) => (
                             <IconBell color={color} size={size}></IconBell>
                         )
@@ -59,6 +94,24 @@ const Main = () => {
                     name="settings"
                     options={{
                         title: 'Settings',
+                        tabBarButton: () => (
+                            <Pressable
+                                onPress={() => {
+                                    router.navigate('/settings');
+                                }}
+                                onLongPress={() => queryClient.refetchQueries()}
+                                style={styles.base.tabBarIcon}
+                            >
+                                <IconSettings
+                                    color={
+                                        pathname === '/settings'
+                                            ? colors.ac1
+                                            : colors.tx3
+                                    }
+                                    size={26}
+                                ></IconSettings>
+                            </Pressable>
+                        ),
                         tabBarIcon: ({ color, size }) => (
                             <IconSettings
                                 color={color}

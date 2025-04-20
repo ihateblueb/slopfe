@@ -129,7 +129,7 @@ const Status = ({ status }) => {
                                 style={[
                                     styles.status.reaction,
                                     reaction?.me
-                                        ? styles.status.iReacted
+                                        ? styles.status.reacted
                                         : undefined
                                 ]}
                             >
