@@ -18,7 +18,7 @@ const LoginPage = () => {
         await setString('token', token);
         await setString('domain', domain);
 
-        router.navigate('/authenticated');
+        router.navigate('/');
     }
 
     return (

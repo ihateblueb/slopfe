@@ -14,6 +14,9 @@ const base = StyleSheet.create({
         color: colors.tx2,
         backgroundColor: colors.bg2
     },
+    textArea: {
+        height: '50%'
+    },
     header: {
         backgroundColor: colors.bg2,
         borderBottomColor: colors.bg3,
@@ -26,6 +29,10 @@ const base = StyleSheet.create({
         flex: 1,
         color: colors.tx2,
         backgroundColor: colors.bg1
+    },
+    paddedScene: {
+        gap: 10,
+        padding: 10
     },
     tabBar: {
         color: colors.tx2,

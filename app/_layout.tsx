@@ -17,6 +17,10 @@ export default function RootLayout() {
                 }}
             >
                 <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen
+                    name="compose"
+                    options={{ headerShown: false, presentation: 'modal' }}
+                />
             </Stack>
         </QueryClientProvider>
     );
