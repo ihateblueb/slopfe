@@ -1,7 +1,7 @@
 {
     "expo": {
-        "name": "slopfe",
-        "slug": "slopfe",
+        "name": "snowdrop",
+        "slug": "snowdrop",
         "version": "1.0.0",
         "orientation": "portrait",
         "icon": "./assets/images/icon.png",
@@ -10,14 +10,14 @@
         "newArchEnabled": true,
         "ios": {
             "supportsTablet": true,
-            "bundleIdentifier": "me.blueb.slopfe"
+            "bundleIdentifier": "me.blueb.snowdrop"
         },
         "android": {
             "adaptiveIcon": {
                 "foregroundImage": "./assets/images/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
             },
-            "package": "me.blueb.slopfe"
+            "package": "me.blueb.snowdrop"
         },
         "plugins": [
             "expo-router",
