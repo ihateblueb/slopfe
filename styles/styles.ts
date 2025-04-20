@@ -147,6 +147,9 @@ const mfm = StyleSheet.create({
     url: {
         color: colors.ac1
     },
+    emojiContainer: {
+        maxHeight: 20
+    },
     emoji: {
         display: 'flex',
         overflow: 'hidden',
