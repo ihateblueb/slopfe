@@ -3,7 +3,7 @@ import styles from '@/styles/styles';
 
 const Emoji = ({ src }) => {
     return src ? (
-        <View>
+        <View style={styles.mfm.emojiContainer}>
             <Image style={styles.mfm.emoji} src={src} />
         </View>
     ) : undefined;
