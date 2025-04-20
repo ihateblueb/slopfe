@@ -7,6 +7,7 @@ const Compose = () => {
         <View style={styles.base.scene}>
             <TextInput
                 placeholder="Content warning"
+                placeholderTextColor={colors.tx3}
                 style={styles.base.textInput}
             />
         </View>

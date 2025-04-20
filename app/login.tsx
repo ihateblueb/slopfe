@@ -45,6 +45,7 @@ const LoginPage = () => {
                     autoCorrect={false}
                     autoCapitalize="none"
                     placeholder="example.com"
+                    placeholderTextColor={colors.tx3}
                     style={styles.base.textInput}
                     onChangeText={(newDomain) => setDomain(newDomain)}
                     defaultValue={domain}
@@ -54,6 +55,7 @@ const LoginPage = () => {
                     autoCorrect={false}
                     autoCapitalize="none"
                     placeholder="auth token"
+                    placeholderTextColor={colors.tx3}
                     style={styles.base.textInput}
                     onChangeText={(newToken) => setToken(newToken)}
                     defaultValue={token}
