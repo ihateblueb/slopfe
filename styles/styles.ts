@@ -79,6 +79,9 @@ const status = StyleSheet.create({
         borderBottomColor: colors.bg3,
         borderBottomWidth: 1
     },
+    baseSimple: {
+        display: 'flex'
+    },
     avatar: {
         display: 'flex',
         borderRadius: 8,
@@ -196,9 +199,39 @@ const mfm = StyleSheet.create({
     }
 });
 
+const notification = StyleSheet.create({
+    base: {
+        display: 'flex',
+        padding: 16,
+        borderBottomColor: colors.bg3,
+        borderBottomWidth: 1,
+        gap: 16
+    },
+    header: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        gap: 10
+    },
+    headerText: {
+        flex: 1
+    },
+    headerInfo: {
+        display: 'flex',
+        alignItems: 'flex-end',
+        justifyContent: 'center'
+    },
+    userLink: {
+        fontWeight: 'bold',
+        color: colors.tx1
+    }
+});
+
 export default {
     base: base,
     login: login,
     status: status,
-    mfm: mfm
+    mfm: mfm,
+    notification: notification
 };

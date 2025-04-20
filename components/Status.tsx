@@ -25,7 +25,7 @@ import post_v1_statuses_unbookmark from '@/api/post_v1_statuses_unbookmark';
 import Emoji from '@/components/Emoji';
 import { Link } from 'expo-router';
 
-const Status = ({ status }) => {
+const Status = ({ status, simple = false }) => {
     const [iBoosted, setIBoosted] = useState(status?.reblogged ?? false);
     const [iLiked, setILiked] = useState(status?.favourited ?? false);
     const [iBookmarked, setIBookmarked] = useState(status?.bookmarked ?? false);
@@ -60,7 +60,7 @@ const Status = ({ status }) => {
     }
 
     return (
-        <View style={styles.status.base}>
+        <View style={simple ? styles.status.baseSimple : styles.status.base}>
             <View style={styles.status.header}>
                 <Avatar account={status?.account} />
                 <Link
