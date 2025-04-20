@@ -4,14 +4,7 @@ import colors from '@/styles/colors';
 
 const Compose = () => {
     return (
-        <View
-            style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: colors.bg1
-            }}
-        >
+        <View style={styles.base.scene}>
             <TextInput
                 placeholder="Content warning"
                 style={styles.base.textInput}

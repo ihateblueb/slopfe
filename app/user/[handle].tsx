@@ -10,12 +10,7 @@ const User = () => {
     const { handle } = useLocalSearchParams();
 
     return (
-        <View
-            style={{
-                flex: 1,
-                padding: 20
-            }}
-        >
+        <View style={styles.base.scene}>
             <ScrollView>
                 <Text>user page for {handle}</Text>
             </ScrollView>

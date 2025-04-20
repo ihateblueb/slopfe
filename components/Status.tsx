@@ -63,7 +63,12 @@ const Status = ({ status }) => {
         <View style={styles.status.base}>
             <View style={styles.status.header}>
                 <Avatar account={status?.account} />
-                <Link href={'/user/@' + status?.account?.fqn}>
+                <Link
+                    href={{
+                        pathname: '/user/[handle]',
+                        params: { handle: '@' + status?.account?.fqn }
+                    }}
+                >
                     <View>
                         <Text style={styles.status.headerDisplayname}>
                             <MisskeyMarkdown

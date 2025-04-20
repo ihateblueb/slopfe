@@ -23,6 +23,7 @@ const base = StyleSheet.create({
         color: colors.tx1
     },
     scene: {
+        flex: 1,
         color: colors.tx2,
         backgroundColor: colors.bg1
     },

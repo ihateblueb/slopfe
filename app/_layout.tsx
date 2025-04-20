@@ -3,11 +3,21 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import queryClient from '@/utils/queryClient';
 import { SafeAreaView, useColorScheme, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import colors from '@/styles/colors';
+import styles from '@/styles/styles';
 
 export default function RootLayout() {
     return (
         <QueryClientProvider client={queryClient}>
-            <Slot />
+            <Stack
+                screenOptions={{
+                    headerStyle: styles.base.header,
+                    headerTitleStyle: styles.base.headerTitle,
+                    headerBackTitle: 'Back'
+                }}
+            >
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            </Stack>
         </QueryClientProvider>
     );
 }
