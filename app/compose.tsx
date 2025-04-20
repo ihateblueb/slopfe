@@ -9,6 +9,7 @@ const Compose = () => {
             <Link href="../">Dismiss modal</Link>
             <TextInput
                 placeholder="Content warning"
+                placeholderTextColor={colors.tx3}
                 style={styles.base.textInput}
             />
             <TextInput

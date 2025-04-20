@@ -19,3 +19,5 @@ pnpm-lock.yaml
 .DS_store
 .gitignore
 .prettierignore
+android
+ios
