@@ -42,7 +42,6 @@ const Main = () => {
                                 onPress={() => {
                                     router.navigate('/');
                                 }}
-                                onLongPress={() => queryClient.refetchQueries()}
                                 style={styles.base.tabBarIcon}
                             >
                                 <IconHome
@@ -72,7 +71,6 @@ const Main = () => {
                                 onPress={() => {
                                     router.navigate('/notifications');
                                 }}
-                                onLongPress={() => queryClient.refetchQueries()}
                                 style={styles.base.tabBarIcon}
                             >
                                 <IconBell
@@ -99,7 +97,6 @@ const Main = () => {
                                 onPress={() => {
                                     router.navigate('/settings');
                                 }}
-                                onLongPress={() => queryClient.refetchQueries()}
                                 style={styles.base.tabBarIcon}
                             >
                                 <IconSettings

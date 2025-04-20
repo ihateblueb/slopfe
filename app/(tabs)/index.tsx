@@ -1,12 +1,15 @@
 import { Button, RefreshControl, ScrollView, Text, View } from 'react-native';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { Suspense } from 'react';
 import get_v1_timelines from '@/api/get_v1_timelines';
 import Status from '@/components/Status';
 import styles from '@/styles/styles';
 import queryClient from '@/utils/queryClient';
+import { useIsFocused } from '@react-navigation/core';
 
 export default function Index() {
+    const isFocused = useIsFocused();
+
     const {
         status,
         data,

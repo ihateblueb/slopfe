@@ -75,7 +75,7 @@ const login = StyleSheet.create({
 const status = StyleSheet.create({
     base: {
         display: 'flex',
-        padding: 12,
+        padding: 14,
         borderBottomColor: colors.bg3,
         borderBottomWidth: 1
     },
@@ -102,12 +102,14 @@ const status = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         gap: 10,
-        paddingBottom: 8
+        paddingBottom: 12
     },
     headerDisplayname: {
+        flex: 1,
         color: colors.tx1
     },
     headerUsername: {
+        flex: 1,
         color: colors.tx2
     },
     timestamp: {
@@ -115,7 +117,6 @@ const status = StyleSheet.create({
         fontSize: 12
     },
     headerInfo: {
-        flex: 1,
         flexGrow: 1,
         gap: 4,
         alignItems: 'flex-end'
@@ -128,8 +129,8 @@ const status = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'flex-start',
-        gap: 8,
-        paddingTop: 8
+        gap: 10,
+        paddingTop: 12
     },
     reaction: {
         display: 'flex',
@@ -148,7 +149,7 @@ const status = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         gap: '10%',
-        paddingTop: 8
+        paddingTop: 12
     }
 });
 

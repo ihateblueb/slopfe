@@ -5,6 +5,7 @@ import { SafeAreaView, useColorScheme, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import colors from '@/styles/colors';
 import styles from '@/styles/styles';
+import { Suspense } from 'react';
 
 export default function RootLayout() {
     return (
@@ -14,7 +15,7 @@ export default function RootLayout() {
                     headerStyle: styles.base.header,
                     headerTitleStyle: styles.base.headerTitle,
                     headerBackTitle: 'Back',
-                    headerTintColor: colors.ac1,
+                    headerTintColor: colors.ac1
                 }}
             >
                 <Stack.Screen name="(tabs)" options={{ headerShown: false }} />

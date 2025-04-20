@@ -14,16 +14,17 @@ import {
     IconWorld
 } from '@tabler/icons-react-native';
 import colors from '@/styles/colors';
-import Avatar from '@/components/Avatar';
-import MisskeyMarkdown from '@/components/MisskeyMarkdown';
-import Time from '@/components/Time';
-import React, { useEffect, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import post_v1_statuses_favourite from '@/api/post_v1_statuses_favourite';
 import post_v1_statuses_unfavourite from '@/api/post_v1_statuses_unfavourite';
 import post_v1_statuses_bookmark from '@/api/post_v1_statuses_bookmark';
 import post_v1_statuses_unbookmark from '@/api/post_v1_statuses_unbookmark';
-import Emoji from '@/components/Emoji';
 import { Link } from 'expo-router';
+
+const Time = lazy(() => import('@/components/Time'));
+const Avatar = lazy(() => import('@/components/Avatar'));
+const Emoji = lazy(() => import('@/components/Emoji'));
+const MisskeyMarkdown = lazy(() => import('@/components/MisskeyMarkdown'));
 
 const Status = ({ status, simple = false }) => {
     const [iBoosted, setIBoosted] = useState(status?.reblogged ?? false);
@@ -72,7 +73,7 @@ const Status = ({ status, simple = false }) => {
                     <View>
                         <Text style={styles.status.headerDisplayname}>
                             <MisskeyMarkdown
-                                keyPrefix={`status-${status.id}-author-name`}
+                                keyPrefix={`status-${status.id}-display_name`}
                                 content={
                                     status?.account?.display_name ??
                                     status?.account?.username
@@ -105,7 +106,6 @@ const Status = ({ status, simple = false }) => {
                     </Text>
                 </View>
             </View>
-
             {status?.spoiler_text ? (
                 <Button
                     onPress={() => setCwOpen(!cwOpen)}
